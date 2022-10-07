@@ -27,6 +27,11 @@ describe("Books API", function() {
         await booksModel.create(TestBook);
     })
 
+    this.afterAll("Shut Down", function(){
+        server.close();
+        mongoose.connection.close();
+    })
+
     it("/getAll", function() {
         chai.request(server).get("/mongoose/getAll").end((err,res) => {
             chai.expect(err).to.be.null;
@@ -41,4 +46,6 @@ describe("Books API", function() {
             chai.expect(res.body[0].description).to.equal(TestBook.description);
         })
     })
+
+
 })
