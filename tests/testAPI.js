@@ -22,7 +22,7 @@ describe("Books API", function() {
         await mongoose.connect("mongodb://127.0.0.1:27017");
     })
 
-    this.beforeAll("Test Data", async function() {
+    this.beforeEach("Test Data", async function() {
         await booksModel.deleteMany({});
         await booksModel.create(TestBook);
     })
@@ -32,7 +32,7 @@ describe("Books API", function() {
         mongoose.connection.close();
     })
 
-    it("/getAll", function() {
+    it.only("/getAll", function() {
         chai.request(server).get("/mongoose/getAll").end((err,res) => {
             chai.expect(err).to.be.null;
             chai.expect(res.status).to.equal(200);
@@ -43,6 +43,21 @@ describe("Books API", function() {
             chai.expect(res.body[0].author).to.equal(TestBook.author);
             chai.expect(res.body[0].genre).to.equal(TestBook.genre);
             chai.expect(res.body[0].releaseDate).to.equal(TestBook.releaseDate);
+            chai.expect(res.body[0].description[0]).to.equal(TestBook.description[0]);
+        })
+    })
+
+    it("/getOne/:id", function() {
+        chai.request(server).get("/mongoose/getOne/:id").end((err,res) => {
+            chai.expect(err).to.be.null;
+            chai.expect(res.status).to.equal(200);
+
+            chai.expect(res.body.length).to.equal(1);
+
+            chai.expect(res.body.bookTitle).to.equal(TestBook.bookTitle);
+            chai.expect(res.body.author).to.equal(TestBook.author);
+            chai.expect(res.body.genre).to.equal(TestBook.genre);
+            chai.expect(res.body.releaseDate).to.equal(TestBook.releaseDate);
             chai.expect(res.body[0].description[0]).to.equal(TestBook.description[0]);
         })
     })
