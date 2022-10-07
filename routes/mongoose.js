@@ -71,4 +71,4 @@ router.delete("/delete/:id", (req, res, next) =>{
     }).catch(next);
 })
 
-module.exports = {moviesModel, router};
+module.exports = {booksModel, router};
