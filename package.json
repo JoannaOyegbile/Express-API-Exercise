@@ -11,7 +11,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests -R nyan",
+    "test": "mocha tests -R nyan --timeout 10000",
     "start": "node index.js",
     "coverage": "nyc npm test"
   },
@@ -25,5 +25,8 @@
     "url": "https://github.com/JoannaOyegbile/Express-API-Exercise/issues"
   },
   "homepage": "https://github.com/JoannaOyegbile/Express-API-Exercise#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nyc": "^15.1.0"
+  }
 }

@@ -47,8 +47,4 @@ const server = app.listen(4494, () => {
     console.log(server.address())
 })
 
-server.on("close", () =>{
-    mongoose.connection.close();
-})
-
 module.exports = server;
