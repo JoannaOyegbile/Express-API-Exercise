@@ -73,7 +73,7 @@ describe("Books API", function() {
         })
     })
 
-    it.only("/update" , function() {
+    it("/update" , function() {
         return new Promise((done) => {
 
             const updateBook = {
