@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 //routes
 
-app.use("/array", require("./routes/library.js"));
+app.use("/array", require("./routes/books.js"));
 app.use("/mongoose", require("./routes/mongoose.js").router);
 
 app.get("/error", (req, res, next) => {
