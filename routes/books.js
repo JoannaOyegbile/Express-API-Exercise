@@ -25,16 +25,16 @@ router.get("/getOne/:id", (req, res, next) => {
     }
 })
 
-router.get("/getByBookName/:bookTitle/:releaseDate", (req, res, next) => {
+router.get("/getByBookName/:bookTitle", (req, res, next) => {
     console.log(req.params.bookTitle);
      for (const b of books) {
-         if (b.bookTitle === req.params.bookTitle && b.releaseDate == req.params.releaseDate){
+         if (b.bookTitle == req.params.bookTitle){
              res.status(200).json(b);
              return;
          }
      }
      
-     next(new Error("Invaild name"));
+     next(new Error("Invaild Book Name"));
 })
 
 router.get("/getByGenre/:genre", (req, res, next) => {
